@@ -3,13 +3,21 @@
   justify-content: space-around;
 }
 
+.rod_region{
+  display: flex;
+  width: 10%;
+  justify-content: space-around;
+}
+
 .rod {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  width: 10px;
+  width: 15px;
   height: 300px;
+  /* margin-left: 10px;
+  margin-right: 10px; */
   background-color: black;
 }
 

@@ -10,24 +10,36 @@
     <h1>
         Tower Of Hanoi
     </h1>
+    <p>
+        Move Count: <span id = "move_count">
+            0
+        </span>
+    </p>
     <div class="Tower_Of_Hanoi">
-        <div class = "rod" id = "rod1">
-            <div class = "disk" id = "disk1"
-            draggable="true"
-            >
-            </div>
-            <div class = "disk" id = "disk2"
-            draggable="true"
-            >
-            </div>
-            <div class = "disk" id = "disk3"
-            draggable="true"
-            >
+        <div class = "rod_region" id = "rod1_region"> 
+            <div class = "rod" id = "rod1">
+                <div class = "disk" id = "disk1"
+                draggable="true"
+                >
+                </div>
+                <div class = "disk" id = "disk2"
+                draggable="true"
+                >
+                </div>
+                <div class = "disk" id = "disk3"
+                draggable="true"
+                >
+                </div>
             </div>
         </div>
-        <div class = "rod" id = "rod2">
+        <div class = "rod_region" id = "rod2_region"> 
+            <div class = "rod" id = "rod2">
+            </div>
         </div>
-        <div class = "rod" id = "rod3">
+        <div class = "rod_region" id = "rod3_region"> 
+            <div class = "rod" id = "rod3">
+            </div>
+        </div>
     </div>
     <script src = "script.js"></script>
 </body>

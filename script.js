@@ -1,6 +1,6 @@
-const tower = document.querySelectorAll('.rod');
+const tower = document.querySelectorAll('.rod_region');
 const disk = document.querySelectorAll('.disk');
-
+const move_count = document.getElementById('move_count');
 tower.forEach(elem => {
     elem.addEventListener("dragover",dragOver);
     elem.addEventListener("drop",drop);
@@ -32,9 +32,12 @@ function drop(event){
     event.preventDefault();
     const id = event.dataTransfer.getData('text');
     const droppingDisk = document.getElementById(id);
-    const topDisk = this.firstElementChild;
+    const topDisk = this.firstElementChild.firstElementChild;
+    console.log("topDisk: ", topDisk);
+    console.log("droppingDisk: ", droppingDisk);
     if(topDisk === null || droppingDisk.offsetWidth < topDisk.offsetWidth){
-        this.prepend(droppingDisk);
+        this.firstElementChild.prepend(droppingDisk);
+        move_count.innerHTML = parseInt(move_count.innerHTML) + 1;
     }
     else{
         alert("Can't place larger disk on smaller disk");
