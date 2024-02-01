@@ -1,3 +1,52 @@
+* {
+  background-color: #333;
+  color: white;
+}
+
+.header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background-color: #333;
+  color: white;
+  font-size: 30px;
+}
+
+.move_count_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background-color: #333;
+  color: white;
+  font-size: 30px;
+  margin-bottom: 0px;
+}
+
+.reset_button_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background-color: #333;
+  color: white;
+  font-size: 30px;
+}
+
+.reset_button_container button{
+  background-color: #333;
+  color: white;
+  font-size: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+.reset_button_container button:hover{
+  background-color: #333;
+  color: red;
+}
+
 .Tower_Of_Hanoi {
   display: flex;
   justify-content: space-around;

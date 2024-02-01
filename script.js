@@ -47,7 +47,8 @@ function drop(event){
         move_count.innerHTML = parseInt(move_count.innerHTML) + 1;
     }
     else{
-        alert("Can't place larger disk on smaller disk");
+        console.log("Invalid move!");
+        // alert("Invalid move!");
     }
 }
 
