@@ -1,6 +1,8 @@
 const tower = document.querySelectorAll('.rod_region');
 const disk = document.querySelectorAll('.disk');
 const move_count = document.getElementById('move_count');
+const reset_button = document.getElementById('reset_button');
+
 tower.forEach(elem => {
     elem.addEventListener("dragover",dragOver);
     elem.addEventListener("drop",drop);
@@ -67,4 +69,7 @@ function resetGame(){
     tower1.append(disk1);
     tower1.append(disk2);
     tower1.append(disk3);
+    move_count.innerHTML = 0;
 }
+
+reset_button.addEventListener('click', resetGame);
