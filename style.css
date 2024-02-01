@@ -25,6 +25,7 @@
   height: 20px;
   border-radius: 40px;
   margin-top: 2px;
+  /* transition: top 0.5s , left 0.5s; */
 }
 #disk1 {
   background-color: red;

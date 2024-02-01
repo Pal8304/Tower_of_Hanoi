@@ -17,10 +17,14 @@ disk.forEach(elem => {
 function dragStart(event){
     // console.log('drag start');
     event.dataTransfer.setData('text', event.target.id);
+    const droppingDisk = document.getElementById(event.target.id);
+    droppingDisk.style.opacity = '0.5';
 }
 
 function dragEnd(event){
     // console.log('drag end');
+    const droppingDisk = document.getElementById(event.target.id);
+    droppingDisk.style.opacity = '1';
     event.dataTransfer.clearData();
 }
 
@@ -35,10 +39,11 @@ function drop(event){
     const id = event.dataTransfer.getData('text');
     const droppingDisk = document.getElementById(id);
     const topDisk = this.firstElementChild.firstElementChild;
-    console.log("topDisk: ", topDisk);
-    console.log("droppingDisk: ", droppingDisk);
+    // console.log("topDisk: ", topDisk);
+    // console.log("droppingDisk: ", droppingDisk);
     if(topDisk === null || droppingDisk.offsetWidth < topDisk.offsetWidth){
         this.firstElementChild.prepend(droppingDisk);
+        // animate dropping disk
         move_count.innerHTML = parseInt(move_count.innerHTML) + 1;
     }
     else{
