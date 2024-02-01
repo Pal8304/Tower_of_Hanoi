@@ -1,0 +1,34 @@
+.Tower_Of_Hanoi {
+  display: flex;
+  justify-content: space-around;
+}
+
+.rod {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 10px;
+  height: 300px;
+  background-color: black;
+}
+
+.disk {
+  height: 20px;
+  border-radius: 40px;
+  margin-top: 2px;
+}
+#disk1 {
+  background-color: red;
+  width: 100px;
+}
+
+#disk2 {
+  background-color: blue;
+  width: 200px;
+}
+
+#disk3 {
+  background-color: green;
+  width: 300px;
+}
