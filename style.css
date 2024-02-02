@@ -55,6 +55,29 @@
   color: red;
 }
 
+.undo_button_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  background-color: #333;
+  color: white;
+  /* font-size: 30px; */
+}
+
+.undo_button_container button{
+  background-color: #333;
+  color: white;
+  font-size: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+.undo_button_container button:hover{
+  background-color: #333;
+  color: yellow;
+}
+
 .Tower_Of_Hanoi {
   display: flex;
   justify-content: space-around;
@@ -76,6 +99,7 @@
   /* margin-left: 10px;
   margin-right: 10px; */
   background-color: black;
+  border-radius: 40px;
 }
 
 .base{

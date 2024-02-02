@@ -3,6 +3,9 @@ const disk = document.querySelectorAll('.disk');
 const move_count = document.getElementById('move_count');
 const reset_button = document.getElementById('reset_button');
 const error_message = document.getElementById('error_message');
+const undo_button = document.getElementById('undo_button');
+
+moves = [];
 
 tower.forEach(elem => {
     elem.addEventListener("dragover",dragOver);
@@ -40,6 +43,9 @@ function drop(event){
     const id = event.dataTransfer.getData('text');
     const droppingDisk = document.getElementById(id);
     const topDisk = this.firstElementChild.firstElementChild;
+    const droppingDiskId = droppingDisk.id;
+    const sourceRod = droppingDisk.parentElement.id;
+    const destinationRod = this.id;
     // console.log("topDisk: ", topDisk.offsetWidth);
     // console.log("droppingDisk: ", droppingDisk.offsetWidth);
     if(topDisk === null || droppingDisk.offsetWidth < topDisk.offsetWidth){
@@ -47,6 +53,13 @@ function drop(event){
         // animate dropping disk
         droppingDisk.style.transition = '1s';
         move_count.innerHTML = parseInt(move_count.innerHTML) + 1;
+        moves.push(
+            {
+                disk: droppingDiskId,
+                source: sourceRod,
+                destination: destinationRod
+            }
+        )
     }
     else{
         console.log("Invalid move!" + droppingDisk.offsetWidth + " " + topDisk.offsetWidth);
@@ -93,4 +106,17 @@ function resetGame(){
     move_count.innerHTML = 0;
 }
 
+function undoMove(){
+    if(moves.length > 0){
+        const lastMove = moves[moves.length - 1];
+        const disk = document.getElementById(lastMove.disk);
+        const sourceRod = document.getElementById(lastMove.source);
+        const destinationRod = document.getElementById(lastMove.destination);
+        sourceRod.prepend(disk);
+        moves.pop();
+        move_count.innerHTML = parseInt(move_count.innerHTML) - 1;
+    }
+}
+
 reset_button.addEventListener('click', resetGame);
+undo_button.addEventListener('click', undoMove);
