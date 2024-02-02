@@ -2,6 +2,7 @@ const tower = document.querySelectorAll('.rod_region');
 const disk = document.querySelectorAll('.disk');
 const move_count = document.getElementById('move_count');
 const reset_button = document.getElementById('reset_button');
+const error_message = document.getElementById('error_message');
 
 tower.forEach(elem => {
     elem.addEventListener("dragover",dragOver);
@@ -39,8 +40,8 @@ function drop(event){
     const id = event.dataTransfer.getData('text');
     const droppingDisk = document.getElementById(id);
     const topDisk = this.firstElementChild.firstElementChild;
-    // console.log("topDisk: ", topDisk);
-    // console.log("droppingDisk: ", droppingDisk);
+    // console.log("topDisk: ", topDisk.offsetWidth);
+    // console.log("droppingDisk: ", droppingDisk.offsetWidth);
     if(topDisk === null || droppingDisk.offsetWidth < topDisk.offsetWidth){
         this.firstElementChild.prepend(droppingDisk);
         // animate dropping disk
@@ -48,7 +49,13 @@ function drop(event){
         move_count.innerHTML = parseInt(move_count.innerHTML) + 1;
     }
     else{
-        console.log("Invalid move!");
+        console.log("Invalid move!" + droppingDisk.offsetWidth + " " + topDisk.offsetWidth);
+        if(droppingDisk.offsetWidth == topDisk.offsetWidth){
+            error_message.innerHTML = "Error : You cannot place the disk on the same rod again"
+        }
+        else{
+            error_message.innerHTML = "Error : You cannot place a larger disk on a smaller disk"
+        }
         // alert("Invalid move!");
     }
     checkWin();
@@ -57,8 +64,8 @@ function drop(event){
 function checkWin(){
     const tower2 = document.getElementById('rod2').children;
     const tower3 = document.getElementById('rod3').children;
-    console.log("tower2: ", tower2.length);
-    if(tower2.length === 3 || tower3.length === 3){
+    // console.log("tower2: ", tower2.length);
+    if(tower3.length === 4){
         alert('You win!');
         resetGame();
     }
@@ -71,12 +78,18 @@ function resetGame(){
     const disk1 = document.getElementById('disk1');
     const disk2 = document.getElementById('disk2');
     const disk3 = document.getElementById('disk3');
+    const base1 = document.getElementById('base1');
+    const base2 = document.getElementById('base2');
+    const base3 = document.getElementById('base3');
     tower1.innerHTML = '';
     tower2.innerHTML = '';
     tower3.innerHTML = '';
     tower1.append(disk1);
     tower1.append(disk2);
     tower1.append(disk3);
+    tower1.append(base1);
+    tower2.append(base2);
+    tower3.append(base3);
     move_count.innerHTML = 0;
 }
 

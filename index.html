@@ -12,19 +12,21 @@
             Tower Of Hanoi
         </h1>
     </div>
-    <div class = "move_count_container">
-        <p>
-            Move Count: <span id = "move_count">
-                0
-            </span>
-        </p>
-    </div>
-    <div class = "reset_button_container">
-        <p>
-            <button id = "reset_button">
-                Reset
-            </button>
-        </p>
+    <div class = "data_container">
+        <div class = "move_count_container">
+            <p>
+                Move Count: <span id = "move_count">
+                    0
+                </span>
+            </p>
+        </div>
+        <div class = "reset_button_container">
+            <p>
+                <button id = "reset_button">
+                    Reset
+                </button>
+            </p>
+        </div>
     </div>
     <div class="Tower_Of_Hanoi">
         <div class = "rod_region" id = "rod1_region"> 
@@ -41,16 +43,26 @@
                 draggable="true"
                 >
                 </div>
+                <div class = "base" id = "base1">
+                </div>
             </div>
         </div>
         <div class = "rod_region" id = "rod2_region"> 
             <div class = "rod" id = "rod2">
+                <div class = "base" id = "base2">
+                </div>
             </div>
         </div>
         <div class = "rod_region" id = "rod3_region"> 
             <div class = "rod" id = "rod3">
+                <div class = "base" id = "base3">
+                </div>
             </div>
         </div>
+    </div>
+    <div class = "error">
+        <p class = "error_message" id = "error_message">
+        </p>
     </div>
     <script src = "script.js"></script>
 </body>
