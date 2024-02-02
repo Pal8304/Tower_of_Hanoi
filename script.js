@@ -6,7 +6,7 @@ const reset_button = document.getElementById('reset_button');
 tower.forEach(elem => {
     elem.addEventListener("dragover",dragOver);
     elem.addEventListener("drop",drop);
-    elem.addEventListener("drop",checkWin);
+    // elem.addEventListener("drop",checkWin);
 })
 
 disk.forEach(elem => {
@@ -44,12 +44,14 @@ function drop(event){
     if(topDisk === null || droppingDisk.offsetWidth < topDisk.offsetWidth){
         this.firstElementChild.prepend(droppingDisk);
         // animate dropping disk
+        droppingDisk.style.transition = '1s';
         move_count.innerHTML = parseInt(move_count.innerHTML) + 1;
     }
     else{
         console.log("Invalid move!");
         // alert("Invalid move!");
     }
+    checkWin();
 }
 
 function checkWin(){
@@ -58,7 +60,7 @@ function checkWin(){
     console.log("tower2: ", tower2.length);
     if(tower2.length === 3 || tower3.length === 3){
         alert('You win!');
-        // resetGame();
+        resetGame();
     }
 }
 
