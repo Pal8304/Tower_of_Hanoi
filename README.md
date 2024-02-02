@@ -6,5 +6,5 @@ This project tries to simulate it.
 
 ## Run
 ```
-    
+    git clone https://github.com/Pal8304/Tower_of_Hanoi
 ```
