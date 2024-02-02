@@ -114,20 +114,6 @@
   margin-top: 2px;
   /* transition: top 0.5s , left 0.5s; */
 }
-#disk1 {
-  background-color: red;
-  width: 100px;
-}
-
-#disk2 {
-  background-color: blue;
-  width: 200px;
-}
-
-#disk3 {
-  background-color: green;
-  width: 300px;
-}
 
 .error_message{
   display: flex;
