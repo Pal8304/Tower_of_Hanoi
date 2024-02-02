@@ -5,6 +5,17 @@ const base2 = document.getElementById('base2');
 const base3 = document.getElementById('base3');
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 
+for(let i = 0; i < disk_count.value;i++){
+    const disk = document.createElement('div');
+    disk.classList.add('disk');
+    disk.setAttribute('id', 'disk' + (i+1));
+    disk.setAttribute('draggable', 'true');
+    disk.style.width = base1.offsetWidth - (i+1)*50 + 'px';
+    disk.style.height = '20px';
+    disk.style.backgroundColor = colors[i%(colors.length)];
+    rod1.prepend(disk);
+}
+
 disk_count.addEventListener('change', function(){
     const count = parseInt(disk_count.value);
     while(rod1.firstChild != base1){
