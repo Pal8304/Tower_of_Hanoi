@@ -5,9 +5,20 @@ const base2 = document.getElementById('base2');
 const base3 = document.getElementById('base3');
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 
+const tower = document.querySelectorAll('.rod_region');
+let disk = document.querySelectorAll('.disk');
+const move_count = document.getElementById('move_count');
+const reset_button = document.getElementById('reset_button');
+const error_message = document.getElementById('error_message');
+const undo_button = document.getElementById('undo_button');
+
+moves = [];
+
+let count = parseInt(disk_count.value);
+
 for(let i = 0; i < disk_count.value;i++){
     const disk = document.createElement('div');
-    disk.classList.add('disk');
+    disk.classList.add("disk");
     disk.setAttribute('id', 'disk' + (i+1));
     disk.setAttribute('draggable', 'true');
     disk.style.width = base1.offsetWidth - (i+1)*50 + 'px';
@@ -16,31 +27,30 @@ for(let i = 0; i < disk_count.value;i++){
     rod1.prepend(disk);
 }
 
+disk = document.querySelectorAll('.disk');
+
 disk_count.addEventListener('change', function(){
-    const count = parseInt(disk_count.value);
+    count = parseInt(disk_count.value);
     while(rod1.firstChild != base1){
         rod1.removeChild(rod1.firstChild);
     }
     for(let i = 0; i < count;i++){
         const disk = document.createElement('div');
         disk.classList.add('disk');
-        disk.setAttribute('id', 'disk' + (i+1));
+        disk.setAttribute('id', 'disk' + String(i+1));
         disk.setAttribute('draggable', 'true');
         disk.style.width = base1.offsetWidth - (i+1)*50 + 'px';
         disk.style.height = '20px';
         disk.style.backgroundColor = colors[i%(colors.length)];
         rod1.prepend(disk);
     }
+    disk = document.querySelectorAll('.disk');
+    disk.forEach(elem => {
+        elem.addEventListener("dragstart",dragStart);
+        elem.addEventListener("dragend",dragEnd);
+    })
+    //console.log("disk: ", disk);
 })
-
-const tower = document.querySelectorAll('.rod_region');
-const disk = document.querySelectorAll('.disk');
-const move_count = document.getElementById('move_count');
-const reset_button = document.getElementById('reset_button');
-const error_message = document.getElementById('error_message');
-const undo_button = document.getElementById('undo_button');
-
-moves = [];
 
 tower.forEach(elem => {
     elem.addEventListener("dragover",dragOver);
@@ -53,13 +63,17 @@ disk.forEach(elem => {
     elem.addEventListener("dragend",dragEnd);
 })
 
+//console.log("disk: ", disk);
+
 function dragStart(event){
-    // console.log('drag start');
+    console.log('drag start');
     event.dataTransfer.setData('text', event.target.id);
     const droppingDisk = document.getElementById(event.target.id);
     const rod = droppingDisk.parentElement;
     const topDisk = rod.firstElementChild;
-    //console.log("topDisk: ", topDisk);
+    console.log("topDisk: ", topDisk);
+    console.log("droppingDisk: ", droppingDisk);
+    console.log("rod: ", rod);
     if(topDisk === droppingDisk){
         droppingDisk.style.opacity = '0.5';
     }
@@ -81,16 +95,18 @@ function dragOver(event){
 }
 
 function drop(event){
-    // console.log('drop');
     event.preventDefault();
-    const id = event.dataTransfer.getData('text');
-    const droppingDisk = document.getElementById(id);
+    const did = event.dataTransfer.getData('text');
+    const droppingDisk = document.getElementById(did);
     const topDisk = this.firstElementChild.firstElementChild;
+    console.log("Drop :");
+    console.log("droppingDisk: ", droppingDisk);
+    console.log("topDisk: ", topDisk);
+    console.log("this: ", this);
+    console.log("id: ", did);
     const droppingDiskId = droppingDisk.id;
     const sourceRod = droppingDisk.parentElement.id;
     const destinationRod = this.id;
-    // console.log("topDisk: ", topDisk.offsetWidth);
-    // console.log("droppingDisk: ", droppingDisk.offsetWidth);
     if(topDisk === null || droppingDisk.offsetWidth < topDisk.offsetWidth){
         this.firstElementChild.prepend(droppingDisk);
         // animate dropping disk
@@ -121,8 +137,8 @@ function drop(event){
 function checkWin(){
     const tower2 = document.getElementById('rod2').children;
     const tower3 = document.getElementById('rod3').children;
-    // console.log("tower2: ", tower2.length);
-    if(tower3.length === disk_count+1){
+    console.log("checkWin: ", tower3, count+1)
+    if(tower3.length === count+1){
         alert('You win!');
         resetGame();
     }
