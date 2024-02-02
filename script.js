@@ -22,7 +22,15 @@ function dragStart(event){
     // console.log('drag start');
     event.dataTransfer.setData('text', event.target.id);
     const droppingDisk = document.getElementById(event.target.id);
-    droppingDisk.style.opacity = '0.5';
+    const rod = droppingDisk.parentElement;
+    const topDisk = rod.firstElementChild;
+    console.log("topDisk: ", topDisk);
+    if(topDisk === droppingDisk){
+        droppingDisk.style.opacity = '0.5';
+    }
+    else{
+        event.preventDefault();
+    }
 }
 
 function dragEnd(event){
@@ -60,6 +68,7 @@ function drop(event){
                 destination: destinationRod
             }
         )
+        error_message.innerHTML = "";
     }
     else{
         console.log("Invalid move!" + droppingDisk.offsetWidth + " " + topDisk.offsetWidth);
