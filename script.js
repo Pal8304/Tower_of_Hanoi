@@ -30,6 +30,7 @@ for(let i = 0; i < disk_count.value;i++){
 disk = document.querySelectorAll('.disk');
 
 disk_count.addEventListener('change', function(){
+    resetGame();
     count = parseInt(disk_count.value);
     while(rod1.firstChild != base1){
         rod1.removeChild(rod1.firstChild);
@@ -66,14 +67,14 @@ disk.forEach(elem => {
 //console.log("disk: ", disk);
 
 function dragStart(event){
-    console.log('drag start');
+    //console.log('drag start');
     event.dataTransfer.setData('text', event.target.id);
     const droppingDisk = document.getElementById(event.target.id);
     const rod = droppingDisk.parentElement;
     const topDisk = rod.firstElementChild;
-    console.log("topDisk: ", topDisk);
-    console.log("droppingDisk: ", droppingDisk);
-    console.log("rod: ", rod);
+    // console.log("topDisk: ", topDisk);
+    // console.log("droppingDisk: ", droppingDisk);
+    // console.log("rod: ", rod);
     if(topDisk === droppingDisk){
         droppingDisk.style.opacity = '0.5';
     }
@@ -99,11 +100,11 @@ function drop(event){
     const did = event.dataTransfer.getData('text');
     const droppingDisk = document.getElementById(did);
     const topDisk = this.firstElementChild.firstElementChild;
-    console.log("Drop :");
-    console.log("droppingDisk: ", droppingDisk);
-    console.log("topDisk: ", topDisk);
-    console.log("this: ", this);
-    console.log("id: ", did);
+    // console.log("Drop :");
+    // console.log("droppingDisk: ", droppingDisk);
+    // console.log("topDisk: ", topDisk);
+    // console.log("this: ", this);
+    // console.log("id: ", did);
     const droppingDiskId = droppingDisk.id;
     const sourceRod = droppingDisk.parentElement.id;
     const destinationRod = this.id;
@@ -137,7 +138,7 @@ function drop(event){
 function checkWin(){
     const tower2 = document.getElementById('rod2').children;
     const tower3 = document.getElementById('rod3').children;
-    console.log("checkWin: ", tower3, count+1)
+    //console.log("checkWin: ", tower3, count+1)
     if(tower3.length === count+1){
         alert('You win!');
         resetGame();
@@ -153,8 +154,8 @@ function resetGame(){
     disks_array.sort((a,b) => {
         return b.offsetWidth - a.offsetWidth;
     });
-    // console.log("disks: ", disks);
-    for(let i = 0; i < disk_count;i++){
+    console.log("disks: ", disks);
+    for(let i = 0; i < count;i++){
         tower1.prepend(disks_array[i]);
     }
     move_count.innerHTML = 0;
