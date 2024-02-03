@@ -32,6 +32,16 @@ disk = document.querySelectorAll('.disk');
 disk_count.addEventListener('change', function(){
     resetGame();
     count = parseInt(disk_count.value);
+    if(count > 7){
+        error_message.innerHTML = "Maximum disk count is 7";
+        count = 7;
+        disk_count.value = 7;
+    }
+    else if(count < 3){
+        error_message.innerHTML = "Minimum disk count is 3";
+        count = 3;
+        disk_count.value = 3;
+    }
     while(rod1.firstChild != base1){
         rod1.removeChild(rod1.firstChild);
     }
@@ -140,8 +150,8 @@ function checkWin(){
     const tower3 = document.getElementById('rod3').children;
     //console.log("checkWin: ", tower3, count+1)
     if(tower3.length === count+1){
-        alert('You win!');
-        resetGame();
+        error_message.innerHTML = "Congratulations! You have won!";
+        
     }
 }
 
@@ -159,6 +169,8 @@ function resetGame(){
         tower1.prepend(disks_array[i]);
     }
     move_count.innerHTML = 0;
+    moves = [];
+    error_message.innerHTML = "";
 }
 
 function undoMove(){
